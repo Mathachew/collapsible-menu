@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="A simple collapsible menu built with jQuery" />
+
+        <title>Collapsible Menu Demo</title>
+
+        <link href="css/collapsible-menu.css" type="text/css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/collapsible-menu.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#collapsible-menu-transition').change(function () {
+                    $('.collapsible-menu').data('collapsible-menu', this.value);
+                    var anchors = $('.collapsible-menu a.expanded');
+
+                    if (this.value == 'accordion' && anchors.length > 1) {
+                        anchors.not(anchors[0]).removeClass('expanded').addClass('collapsed').find('+ ul').slideUp('medium');
+                    }
+                });
+
+                $('#collapsible-menu-transition').val($('.collapsible-menu').data('collapsible-menu'));
+            });
+        </script>
+    </head>
+
+    <body>
+        <h3>Collapsible Menu Demo</h3>
+
+        <p>Select a transition below to see the different effects in action.</p>
+
+        <select id="collapsible-menu-transition">
+            <option value="slide">Slide</option>
+            <option value="fade">Fade</option>
+            <option value="grow">Grow/Shrink</option>
+            <option value="" selected="selected">Appear/Disappear</option>
+            <option value="accordion">Accordion</option>
+        </select>
+
+        <ul class="collapsible-menu" data-collapsible-menu="slide">
+            <li>
+                <a class="expanded">JavaScript</a>
+                <ul>
+                    <li><a href="javascript:;">Pure</a></li>
+                    <li>
+                        <a href="javascript:;">jQuery</a>
+                        <ul>
+                            <li><a href="javascript:;">Ajax</a></li>
+                            <li><a href="javascript:;">Effects</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:;">YUI</a></li>
+                </ul>
+            </li>
+            <li class="footer"></li>
+            <li>
+                <a class="collapsed">Testing</a>
+                <ul>
+                    <li><a href="javascript:;">Jasmine</a></li>
+                    <li><a href="javascript:;">Karma</a></li>
+                    <li><a href="javascript:;">QUnit</a></li>
+                </ul>
+            </li>
+            <li class="footer"></li>
+            <li>
+                <a class="collapsed">Templating</a>
+                <ul>
+                    <li><a href="javascript:;">HandlebarsJS</a></li>
+                    <li><a href="javascript:;">Jade</a></li>
+                    <li><a href="javascript:;">Mustache</a></li>
+                    <li><a href="javascript:;">Underscore</a></li>
+                </ul>
+            </li>
+            <li class="footer"></li>
+        </ul>
+
+    </body>
+</html>
